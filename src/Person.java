@@ -6,12 +6,15 @@ import java.util.List;
  */
 public class Person extends Point {
 
+    // 序号
     private int num;
 
     private int money = 50;
 
+    // 初代富豪标记
     private boolean originalRichMan;
 
+    // 初代贫困户标记
     private boolean originalPoor;
 
     public Person(int num, int x, int y) {
@@ -43,20 +46,22 @@ public class Person extends Point {
     public void play(PersonPool personPool) {
         List<Person> people = personPool.getPersonList();
 
-        // 标记最初的富人
+        // 标记初代富豪
         if (!originalRichMan && money >= Constants.RICH_STANDARD && personPool.getOriginalRichManCount() < Constants.ORIGINAL_RICH_COUNT) {
             personPool.originalRichManCountIncrease();
             System.out.println("================================================================================================第" + num + "号玩家成为首批富人，当前富人数=======>" + personPool.getOriginalRichManCount());
             originalRichMan = true;
         }
 
-        //标记最初的穷人
+        // 标记初代贫困户
         if (!originalPoor && money <= Constants.POOR_STANDARD && personPool.getOriginalPoorCount() < Constants.ORIGINAL_POOR_COUNT) {
             personPool.originalPoorCountIncrease();
             System.out.println("================================================================================================第" + num + "号玩家成为首批穷人，当前穷人数=======>" + personPool.getOriginalPoorCount());
             originalPoor = true;
         }
 
+
+        // 仁慈一些，保护0资产玩家
         if (money > 0) {
             money--;
         }

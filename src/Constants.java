@@ -7,10 +7,10 @@ public class Constants {
     // 总人数
     public static int PERSON_COUNT = 100;
 
-    // 富人标准
+    // 富豪标准
     public static int RICH_STANDARD = 80;
 
-    // 穷人标准
+    // 贫困标准
     public static int POOR_STANDARD = 20;
 
     // 最初富豪榜人数

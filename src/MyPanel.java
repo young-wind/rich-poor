@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * 画板
+ *
  * @author WangBingchen
  * @date 2020/2/27 上午  10:25
  */
@@ -24,6 +26,7 @@ public class MyPanel extends JPanel implements Runnable {
         PersonPool personPool = PersonPool.getInstance();
         List<Person> people = personPool.personList;
         for (Person person : people) {
+            // 给初代富豪（红）、贫困户（绿）标记颜色
             if (person.isOriginalRichMan()) {
                 g.setColor(new Color(0xff0000));
             } else if (person.isOriginalPoor()) {
@@ -31,7 +34,9 @@ public class MyPanel extends JPanel implements Runnable {
             } else {
                 g.setColor(new Color(0xdddddd));
             }
+            // 玩一下
             person.play(personPool);
+            // 绘制“柱状”图
             g.fillOval(person.getX(), person.getY(), 8, 3 * person.getMoney());
         }
 
@@ -50,7 +55,7 @@ public class MyPanel extends JPanel implements Runnable {
     class MyTimerTask extends TimerTask {
         @Override
         public void run() {
-            System.out.println("=====================================================================从新绘制" + worldTime);
+            System.out.println("=====================================================================重新绘制" + worldTime);
             MyPanel.this.repaint();
             worldTime++;
         }

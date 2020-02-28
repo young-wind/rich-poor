@@ -1,6 +1,8 @@
 import javax.swing.*;
 
 /**
+ * main方法
+ *
  * @author WangBingchen
  * @date 2020/2/27 上午  10:29
  */
