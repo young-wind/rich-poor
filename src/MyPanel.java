@@ -11,7 +11,7 @@ import java.util.TimerTask;
  */
 public class MyPanel extends JPanel implements Runnable {
 
-    Integer lock = 1;
+    final Integer lock = 1;
 
     public MyPanel() {
         super();
@@ -22,30 +22,24 @@ public class MyPanel extends JPanel implements Runnable {
     public void paint(Graphics g) {
         super.paint(g);
         PersonPool personPool = PersonPool.getInstance();
-        System.out.println("=====================================================================游戏轮数====>  " + lock);
-
-        synchronized (lock) {
-            List<Person> people = personPool.personList;
-            for (Person person : people) {
-                if (person.isOriginalRichMan()) {
-                    g.setColor(new Color(0xff0000));
-                } else if (person.isOriginalPoor()) {
-                    g.setColor(new Color(0x00ff00));
-                } else {
-                    g.setColor(new Color(0xdddddd));
-                }
-                person.play(personPool);
-                g.fillOval(person.getX(), person.getY(), 8, 3 * person.getMoney());
+        List<Person> people = personPool.personList;
+        for (Person person : people) {
+            if (person.isOriginalRichMan()) {
+                g.setColor(new Color(0xff0000));
+            } else if (person.isOriginalPoor()) {
+                g.setColor(new Color(0x00ff00));
+            } else {
+                g.setColor(new Color(0xdddddd));
             }
-
-            // 排序
-            people.sort(Comparator.comparing(Person::getMoney));
-            for (int i = 0; i < Constants.PERSON_COUNT - 1; i++) {
-                people.get(i).setX((10 * i) + 50);
-            }
+            person.play(personPool);
+            g.fillOval(person.getX(), person.getY(), 8, 3 * person.getMoney());
         }
-        lock++;
 
+        // 排序
+        people.sort(Comparator.comparing(Person::getMoney));
+        for (int i = 0; i < Constants.PERSON_COUNT - 1; i++) {
+            people.get(i).setX((10 * i) + 50);
+        }
     }
 
 

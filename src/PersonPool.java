@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 参与人对象池
+ *
  * @author WangBingchen
  * @date 2020/2/27 上午  10:47
  */

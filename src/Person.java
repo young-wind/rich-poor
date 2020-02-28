@@ -61,6 +61,7 @@ public class Person extends Point {
             money--;
         }
 
+        // 随机挑选一个人，把这一块钱给他
         int num;
         do {
             num = (int) (Math.random() * Constants.PERSON_COUNT);
